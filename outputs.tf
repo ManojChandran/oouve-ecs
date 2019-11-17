@@ -15,3 +15,10 @@ output "Cluster-id" {
 output "ECS-service-role-uid" {
   value = "${module.oouve-ecs-service-role.ecs-service-role-uid}"
 }
+
+output "ALB-sub-ids" {
+  value = "${module.oouve-alb.aws-alb-sub-ids}"
+}
+output "ALB-dns-name" {
+  value = "${module.oouve-alb.aws-alb-dns-name}"
+}

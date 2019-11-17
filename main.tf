@@ -37,3 +37,10 @@ module "oouve-ecs-service-role" {
 module "oouve-insance-role" {
   source       = "./modules/43_instance_role"
 }
+
+# Deploy ECS application load balancer
+module "oouve-alb" {
+  source = "./modules/44_ecs_alb"
+  vpc-id = "${var.vpc-id}"
+  alb-subnet-tagname = "${var.alb-subnet-tagname}"
+}
