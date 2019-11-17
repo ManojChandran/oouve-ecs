@@ -1,4 +1,4 @@
-#-------------------40_container_repo/main.tf-------------------------------
+#------------------------41_cluster/main.tf--------------------------------
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -13,26 +13,19 @@
 #--------------------------------------------------------------------------
 
 #-------------variable section--------------------
-variable "repository-name" {}
+variable "cluster-name" {}
 
 #-------------control section---------------------
-# create ECR for container service
-resource "aws_ecr_repository" "oouve-repository" {
-  name = "${var.repository-name}-repo"
-
-  image_scanning_configuration {
-    scan_on_push = true
-  }
+resource "aws_ecs_cluster" "oouve-ecs-cluster" {
+  name = "${var.cluster-name}-cluster"
 
   tags = {
-    Name = "oouve-repository"
+    Name = "oouve-cluster"
   }
 }
 
 #-------------output section------------------------
-output "registry-id" {
-  value = "${aws_ecr_repository.oouve-repository.registry_id}"
-}
-output "repository-url" {
-  value = "${aws_ecr_repository.oouve-repository.repository_url}"
+
+output "cluster-id" {
+  value = "${aws_ecs_cluster.oouve-ecs-cluster.id}"
 }

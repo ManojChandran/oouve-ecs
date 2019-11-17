@@ -21,3 +21,9 @@ module "oouve-ecr" {
   source          = "./modules/40_container_repo"
   repository-name = "${var.repository-name}"
 }
+
+# Deploy ECR
+module "oouve-cluster" {
+  source       = "./modules/41_cluster"
+  cluster-name = "${var.repository-name}"
+}
