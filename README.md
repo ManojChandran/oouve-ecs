@@ -6,3 +6,6 @@ terraform --version
 Terraform v0.12.2
 + provider.aws v2.35.0
 ```
+
+# Reference
+link 1 : https://github.com/linuxacademy/content-terraform

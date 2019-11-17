@@ -15,3 +15,9 @@
 provider "aws" {
   region = "${var.aws-region}"
 }
+
+# Deploy ECR
+module "oouve-ecr" {
+  source          = "./modules/40_container_repo"
+  repository-name = "${var.repository-name}"
+}

@@ -1,3 +1,7 @@
 variable "aws-region" {
-  description = "stored aws region data"
+  description = "stores aws region data"
+}
+
+variable "repository-name" {
+  description = "stores ECR repository name "
 }
