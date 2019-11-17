@@ -22,8 +22,13 @@ module "oouve-ecr" {
   repository-name = "${var.repository-name}"
 }
 
-# Deploy ECR
+# Deploy ECS cluster
 module "oouve-cluster" {
   source       = "./modules/41_cluster"
   cluster-name = "${var.repository-name}"
+}
+
+# Deploy ECS Service
+module "oouve-ecs-service" {
+  source       = "./modules/42_ecs_service"
 }

@@ -11,3 +11,7 @@ output "Repository-url" {
 output "Cluster-id" {
   value = "${module.oouve-cluster.cluster-id}"
 }
+
+output "ECS-service-role-uid" {
+  value = "${module.oouve-ecs-service.ecs-service-role-uid}"
+}
