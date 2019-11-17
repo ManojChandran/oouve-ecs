@@ -29,6 +29,11 @@ module "oouve-cluster" {
 }
 
 # Deploy ECS Service
-module "oouve-ecs-service" {
-  source       = "./modules/42_ecs_service"
+module "oouve-ecs-service-role" {
+  source       = "./modules/42_ecs_service_role"
+}
+
+# Deploy Instance role
+module "oouve-insance-role" {
+  source       = "./modules/43_instance_role"
 }

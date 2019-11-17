@@ -1,4 +1,4 @@
-#--------------------42_ecs_service/main.tf--------------------------------
+#--------------------42_ecs_service_role/main.tf----------------------------
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -35,6 +35,10 @@ resource "aws_iam_role" "ecs-service-role" {
   path                  = "/"
   force_detach_policies = "true"
   assume_role_policy    = "${data.aws_iam_policy_document.ecs-service-policy.json}"
+
+  tags = {
+    Name = "oouve ecs service role"
+  }
 }
 
 # Attach iam policy

@@ -13,5 +13,5 @@ output "Cluster-id" {
 }
 
 output "ECS-service-role-uid" {
-  value = "${module.oouve-ecs-service.ecs-service-role-uid}"
+  value = "${module.oouve-ecs-service-role.ecs-service-role-uid}"
 }
