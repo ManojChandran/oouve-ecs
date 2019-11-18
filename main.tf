@@ -34,7 +34,7 @@ module "oouve-ecs-service-role" {
 }
 
 # Deploy Instance role
-module "oouve-insance-role" {
+module "oouve-instance-role" {
   source       = "./modules/43_instance_role"
 }
 
@@ -43,4 +43,11 @@ module "oouve-alb" {
   source = "./modules/44_ecs_alb"
   vpc-id = "${var.vpc-id}"
   alb-subnet-tagname = "${var.alb-subnet-tagname}"
+}
+
+# Deploy ECS launch configuration
+module "oouve-launch-config" {
+  source = "./modules/45_launch_configuration"
+  launch-config-name = "${var.repository-name}"
+  ecs-instance-profile-id = "${module.oouve-instance-role.ecs-instance-profile-id}"
 }

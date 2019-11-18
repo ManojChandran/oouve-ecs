@@ -51,3 +51,6 @@ resource "aws_iam_instance_profile" "ecs-instance-profile" {
     }
 }
 #-------------output section----------------------
+output "ecs-instance-profile-id" {
+  value = "${aws_iam_instance_profile.ecs-instance-profile.id}"
+}
