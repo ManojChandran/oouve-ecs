@@ -29,12 +29,45 @@ data "aws_subnet_ids" "oouve-subnet-id" {
 
 # create a aws_alb
 resource "aws_alb" "oouve-ecs-alb" {
-    name                = "ecs-load-balancer"
+    name                = "oouve-ecs-alb"
     #security_groups     = ["${aws_security_group.test_public_sg.id}"]
     subnets             = "${data.aws_subnet_ids.oouve-subnet-id.ids}"
 
     tags = {
       Name = "oouve-ecs-alb"
+    }
+}
+
+resource "aws_alb_target_group" "ecs-target-group" {
+    name                = "ecs-target-group"
+    port                = "80"
+    protocol            = "HTTP"
+    vpc_id              = "${var.vpc-id}"
+
+    health_check {
+        healthy_threshold   = "5"
+        unhealthy_threshold = "2"
+        interval            = "30"
+        matcher             = "200"
+        path                = "/"
+        port                = "traffic-port"
+        protocol            = "HTTP"
+        timeout             = "5"
+    }
+
+    tags = {
+      Name = "oouve-ecs-target-group"
+    }
+}
+
+resource "aws_alb_listener" "oouve-alb-listener" {
+    load_balancer_arn = "${aws_alb.oouve-ecs-alb.arn}"
+    port              = "80"
+    protocol          = "HTTP"
+
+    default_action {
+        target_group_arn = "${aws_alb_target_group.ecs-target-group.arn}"
+        type             = "forward"
     }
 }
 
