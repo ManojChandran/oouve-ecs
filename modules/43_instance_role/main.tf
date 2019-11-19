@@ -29,15 +29,15 @@ data "aws_iam_policy_document" "ecs-instance-policy" {
 #-------------control section---------------------
 
 # create IAM role for instance
-resource "aws_iam_role" "ecs-instance-role" {
-    name                = "ecs-instance-role"
+resource "aws_iam_role" "oouve-ecs-instance-role" {
+    name                = "oouve-ecs-instance-role"
     path                = "/"
     assume_role_policy  = "${data.aws_iam_policy_document.ecs-instance-policy.json}"
 }
 
 # attach IAM instance role with policy
 resource "aws_iam_role_policy_attachment" "ecs-instance-role-attachment" {
-    role       = "${aws_iam_role.ecs-instance-role.name}"
+    role       = "${aws_iam_role.oouve-ecs-instance-role.name}"
     policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceforEC2Role"
 }
 
@@ -45,7 +45,7 @@ resource "aws_iam_role_policy_attachment" "ecs-instance-role-attachment" {
 resource "aws_iam_instance_profile" "ecs-instance-profile" {
     name = "ecs-instance-profile"
     path = "/"
-    role = "${aws_iam_role.ecs-instance-role.name}"
+    role = "${aws_iam_role.oouve-ecs-instance-role.name}"
     provisioner "local-exec" {
       command = "sleep 10"
     }
