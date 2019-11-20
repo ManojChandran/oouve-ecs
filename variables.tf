@@ -20,10 +20,10 @@ variable "alb-subnet-tagname" {
 
 variable "launch-config-name" {
   description = "stores lunach configuration name"
-  default = ""
+  default     = ""
 }
 
 variable "ecs-instance-profile-id" {
   description = "stores ECS instance profile id"
-  default = ""
+  default     = ""
 }

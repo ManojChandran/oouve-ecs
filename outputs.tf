@@ -22,3 +22,10 @@ output "ALB-sub-ids" {
 output "ALB-dns-name" {
   value = "${module.oouve-alb.aws-alb-dns-name}"
 }
+
+output "Autoscaling-group" {
+  value = "${module.oouve-launch-config.autoscaling-group}"
+}
+output "Launch-configuration" {
+  value = "${module.oouve-launch-config.launch-configuration}"
+}
