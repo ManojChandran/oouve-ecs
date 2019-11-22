@@ -52,4 +52,6 @@ module "oouve-launch-config" {
   ecs-instance-profile-id = "${module.oouve-instance-role.ecs-instance-profile-id}"
   alb-subnet-tagname      = "${var.alb-subnet-tagname}"
   vpc-id                  = "${var.vpc-id}"
+  ecs-image-id            = "${var.ecs-image-id}"
+  ecs-instance-type       = "${var.ecs-instance-type}"
 }

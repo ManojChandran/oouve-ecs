@@ -17,6 +17,8 @@ variable "launch-config-name" {}
 variable "ecs-instance-profile-id" {}
 variable "vpc-id" {}
 variable "alb-subnet-tagname" {}
+variable "ecs-image-id" {}
+variable "ecs-instance-type" {}
 #-------------data section------------------------
 
 data "aws_subnet_ids" "oouve-subnet-id" {
@@ -32,8 +34,8 @@ data "aws_subnet_ids" "oouve-subnet-id" {
 # create launch configuration for the ECS instances
 resource "aws_launch_configuration" "oouve-launch-config" {
   name                 = "${var.launch-config-name}-launch-config"
-  image_id             = "ami-fad25980"
-  instance_type        = "t2.xlarge"
+  image_id             = "${var.ecs-image-id}"
+  instance_type        = "${var.ecs-instance-type}"
   iam_instance_profile = "${var.ecs-instance-profile-id}"
 
   root_block_device {
